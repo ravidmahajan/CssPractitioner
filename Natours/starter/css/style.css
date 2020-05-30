@@ -1,0 +1,230 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* CMD D select multiple */
+/* click and Ctrl or cmd for multiple cusrsor to write */
+/* minimap to move around in right corner */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    padding: 30px;
+}
+
+.header {
+    height: 95vh; /* 95% of viewport height */
+    background-image: linear-gradient(
+        to right bottom,
+        #7ed56fc9,
+        #28b485cc) ,
+        url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0,100% 0,100% 75vh, 0 100%);
+    position: relative;
+}
+
+.logo-box {
+position: absolute;
+top: 40px;
+left: 40px;
+}
+
+.logo {
+    height: 35px;
+}
+
+.logo:hover {
+    animation: moveInRight 1s ease-out;
+}
+
+.heading-primary {
+color: #fff;
+/* text-transform: uppercase; */
+
+backface-visibility: hidden;
+/* backpart of element in animation is hidden  to fix shaking in animation*/
+margin-bottom: 60px;
+}
+
+.heading-primary-main {
+    /* takes full width and have line break before amd after it */
+display: block;  
+font-size: 60px;
+font-weight: 700;
+letter-spacing: 35px;
+animation-name: moveInLeft;
+    animation-duration: 1s;
+    /* animation-delay: 3s; */
+    /* wait 3s ;/= */
+    /* animation-iteration-count: 3; */
+    /* animation happen 3 times */
+    /* animation-timing-function: ease-in; */
+    /* slow to fast , fast to slow */
+}
+
+.heading-primary-sub {
+display: block;
+font-size: 20px;
+font-weight: 400;
+letter-spacing: 17.4px;
+
+/* animation-name: moveInRight;
+    animation-duration: 1s; */
+    animation: moveInRight 1s ease-out;
+}
+
+.text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* 50% of parent element */
+    transform: translate(-50%, -50%); 
+    /* not depend on parent shift 50% left and top */
+text-align: center;
+}
+
+@keyframes moveInLeft {
+    /* initial state  */
+    /* opactiy and transform */
+    0% {
+opacity: 0;
+/* animate in x direction left to right +ve goes to right, -ve to left */
+/* animate in y top to bottom */
+transform: translateX(-100px);
+    }
+
+    80% {
+transform: translateX(10px);
+    }
+/* final state */
+    100% {
+opacity: 1;
+transform: translateX(0);
+    }
+}
+
+
+@keyframes moveInRight {
+    /* initial state  */
+    /* opactiy and transform */
+    0% {
+opacity: 0;
+/* animate in x direction left to right +ve goes to right, -ve to left */
+/* animate in y top to bottom */
+transform: translateX(100px);
+    }
+
+    80% {
+transform: translateX(-10px);
+    }
+/* final state */
+    100% {
+opacity: 1;
+transform: translateX(0);
+    }
+}
+
+/* pseudo class special state of slelector */
+/* blue then purple for link  */
+.btn:link,
+.btn:visited {
+text-transform: uppercase;
+text-decoration: none;
+padding: 15px 40px;
+display: inline-block;
+/* top bottom left right - 2 */
+/* top right left bottom - 4 */
+
+border-radius: 100px;
+transition: all .2s;
+/* transition on all propertities and should be on initial state */
+position: relative;
+}
+
+.btn-white {
+    background-color: white;
+    color: #777;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    /* x y blur shadow */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+
+/* not related to hover state it is related to initial link state */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* after pseudo element - after element  treated like child of eleement */
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* behind button */
+    /* transition is on inital state */
+    transition: all .4s;
+
+}
+
+.btn-white::after {
+    background-color: white;
+    color: #777;
+}
+
+/* after pseudo element hover */
+.btn:hover::after {
+/* transform: scale(1.5); */
+transform: scaleX(1.4) scaleY(1.6);
+/* double size  */
+opacity: 0;
+}
+
+@keyframes moveButton {
+    /* initial state  */
+    /* opactiy and transform */
+    0% {
+opacity: 0;
+/* animate in x direction left to right +ve goes to right, -ve to left */
+/* animate in y top to bottom */
+transform: translateY(30px);
+/* down +ve */
+    }
+
+/* final state */
+    100% {
+opacity: 1;
+transform: translateY(0);
+    }
+}
+
+.btn-animated{
+    animation: moveButton 0.5 ease-out 0.75s;
+    animation-fill-mode: backwards;
+    /* starts early */
+}
